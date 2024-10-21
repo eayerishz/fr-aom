@@ -1,0 +1,131 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Contact Us | Angelite Online Marketplace{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1 style="font-weight: bold; font-size: 36px;">Contact Us</h1>
+    <p>Please fill this form in a decent manner</p>
+
+    <form method="post">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <div class="input-container">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        color: #2c3e50;
+        border-bottom: 5px solid #3498db;
+        padding-bottom: 8px;
+        text-align: center;
+        font-size: 36px;
+    }
+
+    p {
+        text-align: center;
+    }
+
+    .input-container {
+        margin-bottom: 20px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    .input-container label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .name-inputs {
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+    }
+
+    .name-inputs input {
+        flex: 1;
+        margin-right: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    .name-inputs input:last-child {
+        margin-right: 0;
+    }
+
+    .input-container input,
+    .input-container textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    .input-container textarea {
+        resize: vertical;
+    }
+
+    .input-container button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        border: none;
+        color: white;
+        cursor: pointer;
+        border-radius: 4px;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .input-container button:hover {
+        background-color: #0056b3;
+    }
+
+    @media (max-width: 600px) {
+        .name-inputs {
+            flex-direction: column;
+        }
+
+        .name-inputs input {
+            margin-right: 0;
+            margin-bottom: 10px;
+        }
+
+        .name-inputs input:last-child {
+            margin-bottom: 0;
+        }
+    }
+</style>
+
+{% endblock %}

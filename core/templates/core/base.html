@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="http://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Set height to 100% for body and html to use full viewport height */
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        body {
+            flex: 1;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .site-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            font-size: 1.125rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            color: #1f2937;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #4b5563;
+        }
+
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            color: #fff;
+            transition: background-color 0.3s;
+        }
+
+        .nav-button.admin-panel { background-color: #3b82f6; }
+        .nav-button.admin-panel:hover { background-color: #2563eb; }
+
+        .nav-button.inbox { background-color: #14b8a6; }
+        .nav-button.inbox:hover { background-color: #0d9488; }
+
+        .nav-button.my-products, .nav-button.logout { background-color: #6b7280; }
+        .nav-button.my-products:hover, .nav-button.logout:hover { background-color: #4b5563; }
+
+        .nav-button.signup { background-color: #14b8a6; }
+        .nav-button.signup:hover { background-color: #0d9488; }
+
+        .nav-button.login { background-color: #6b7280; }
+        .nav-button.login:hover { background-color: #4b5563; }
+
+
+        .footer {
+            padding: 1.5rem;
+            background-color: #1f2937;
+            color: #d1d5db;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-links {
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-menu {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .footer-link {
+            color: #38b2ac;
+            font-size: 1.125rem;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s;
+        }
+
+        .footer-link:hover {
+            color: #2c7a7b;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: #a0aec0;
+            text-align: center;
+        }
+
+
+        @media (max-width: 768px) {
+            .footer-menu {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .footer-link {
+                font-size: 1rem;
+            }
+
+            .footer {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-menu {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .footer-link {
+                font-size: 0.875rem;
+            }
+
+            .footer {
+                padding: 0.75rem;
+            }
+
+            .footer-copyright {
+                font-size: 0.75rem;
+            }
+        }
+        .invisible {
+            visibility: hidden;
+        }
+    </style>
+
+    <title>{% block title %}{% endblock %} | AOM</title>
+</head>
+
+<body class="flex flex-col min-h-screen">
+    <nav class="navbar">
+        {% if user.is_authenticated %}
+            <img src="{% static 'img/logo.png' %}" alt="Logo" class="logo" />
+        {% else %}
+            <!-- Empty img tag to preserve space -->
+            <img src="" alt="Logo" class="logo invisible" />
+            <a href="{% url 'core:signup' %}" class="nav-button signup">
+                <i class="fas fa-user-plus"></i> Sign up
+            </a>
+            <a href="{% url 'core:login' %}" class="nav-button login">
+                <i class="fas fa-user"></i> Log in
+            </a>
+        {% endif %}
+
+        <div class="nav-links">
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'item:new' %}" class="nav-link">
+                    <i class="fas fa-plus-circle"></i> New Items
+                </a>
+                <a href="{% url 'item:items' %}" class="nav-link">
+                    <i class="fas fa-th-list"></i> Browse
+                </a>
+            {% endif %}
+
+            {% if request.user.is_authenticated %}
+                {% if request.user.is_superuser %}
+                    <a href="{% url 'core:admin_dashboard' %}" class="nav-button admin-panel">
+                        <i class="fas fa-cogs"></i> Admin Panel
+                    </a>
+                {% endif %}
+                <a href="{% url 'inbox:inbox' %}" class="nav-button inbox">
+                    <i class="fas fa-inbox"></i> Inbox
+                </a>
+                <a href="{% url 'dashboard:index' %}" class="nav-button my-products">
+                    <i class="fas fa-box"></i> My Products
+                </a>
+                <a href="{% url 'core:logout' %}" class="nav-button logout">
+                    <i class="fas fa-box"></i> Logout
+                </a>
+            {% endif %}
+        </div>
+    </nav>
+
+
+    <main class="content flex-grow px-6 py-6">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <ul class="footer-menu">
+                <li><a href="{% url 'core:about' %}" class="footer-link">
+                    <i class="fas fa-info-circle"></i> About Us
+                </a></li>
+                <li><a href="{% url 'core:contact' %}" class="footer-link">
+                    <i class="fas fa-envelope"></i> Contact Us
+                </a></li>
+                <li><a href="{% url 'core:privacy' %}" class="footer-link">
+                    <i class="fas fa-user-shield"></i> Privacy Policy
+                </a></li>
+                <li><a href="{% url 'core:term_use' %}" class="footer-link">
+                    <i class="fas fa-file-contract"></i> Terms of Use
+                </a></li>
+            </ul>
+        </div>
+        <div class="footer-copyright">
+            Copyright © 2024 AOM. All Rights Reserved.
+        </div>
+    </footer>
+</body>
+</html>
