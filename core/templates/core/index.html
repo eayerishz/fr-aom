@@ -7,44 +7,53 @@
 {% block content %}
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
+<style>
+    body {
+        background-size: cover; /* Cover the entire viewport */
+        background-repeat: no-repeat; /* Prevent the image from repeating */
+        background-attachment: fixed; /* Keep the background fixed during scroll */
+    }
+</style>
+
 {% if request.user.is_authenticated %}
     <!-- Content for non-admin users -->
-    <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
-        <h2 class="mb-10 text-3xl font-bold text-center">Categories</h2>
+    <div class="mt-6 px-6 py-12 bg-white border bg-gray-100 shadow-md rounded-xl">
+    <h2 class="mb-10 text-3xl font-bold text-center">Categories</h2>
 
-        <div class="grid grid-cols-6 gap-2">
-            {% for category in categories %}
-                <div>
-                    <a href="#">
-                        <div class="p-2 bg-white rounded-sm">
-                            <h2 class="font-semibold text-center text-xl">{{ category.name }}</h2>
-                            <p class="text-gray-500 text-center text-sm">{{ category.items.count }} items</p>
-                        </div>
-                    </a>
-                </div>
-            {% endfor %}
-        </div>
+    <div class="grid grid-cols-6 gap-2 ">
+        {% for category in categories %}
+            <div>
+                <a href="#">
+                    <div class="p-2 bg-white border border-gray-300 shadow-md rounded-xl">
+                        <h2 class="font-semibold text-[#000] text-center text-xl">{{ category.name }}</h2>
+                        <p class="text-gray-500 text-[#000] text-center text-sm">{{ category.items.count }} items</p>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
     </div>
+</div>
 
-    <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
-        <h2 class="mb-12 text-2xl text-center">Newest items</h2>
+    <div class="mt-6 px-6 py-12 bg-white shadow-lg rounded-xl">
+        <h2 class="mb-12 text-2xl font-bold text-center">Newest Items</h2>
 
-        <div class="grid grid-cols-3 gap-3">
+        <div class="grid grid-cols-5 gap-6">
             {% for item in items %}
-                <div>
+                <div class="bg-white border border-gray-300 shadow-md rounded-xl ">
                     <a href="{% url 'item:detail' item.id %}">
-                        <div>
-                            <img src="{{ item.image.url }}" class="rounded-t-xl">
+                        <div class="flex justify-center">
+                            <img src="{{ item.image.url }}" class="w-60 h-60 object-contain border-4 border-gray-300 rounded-t-xl" >
                         </div>
-                        <div class="p-6 bg-white rounded-b-xl">
-                            <h2 class="text-2xl">{{ item.name }}</h2>
-                            <p class="text-gray-500">Price: {{ item.price }}</p>
+                        <div class="p-7 bg-white border border-gray-300 shadow-md rounded-xl min-h-[180px]">
+                            <h2 class="text-2xl text-[#000] text-center hover:text-[#4D7C0F]">{{ item.name }}</h2>
+                            <p class="text-gray-500 text-center hover:text-[#4D7C0F]">Price: {{ item.price }}</p>
                         </div>
                     </a>
                 </div>
             {% endfor %}
         </div>
     </div>
+
 {% else %}
     <p class="text-center">You do not have permission to view this content.</p>
 {% endif %}

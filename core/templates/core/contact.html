@@ -5,7 +5,7 @@
 {% block content %}
 
 <div class="container">
-    <h1 style="font-weight: bold; font-size: 36px;">Contact Us</h1>
+    <h1 style="font-weight: bold; font-size: 36px;">Contact Us</h1>  <!-- Increased font size here -->
     <p>Please fill this form in a decent manner</p>
 
     <form method="post">
@@ -21,12 +21,12 @@
 
 <style>
     * {
-        box-sizing: border-box;
+        box-sizing: border-box; /* Ensures padding and borders are included in element's total width and height */
     }
 
     body {
-        font-family: Arial, sans-serif;
-        background-color: #f7f7f7;
+        font-family: Arial, sans-serif; /* Set a default font for better appearance */
+        background-color: #f7f7f7; /* Light background color for contrast */
     }
 
     .container {
@@ -39,20 +39,22 @@
     }
 
     h1 {
-        color: #2c3e50;
-        border-bottom: 5px solid #3498db;
+        color: #000;
+        border-bottom: 5px solid #4D7C0F;
         padding-bottom: 8px;
-        text-align: center;
-        font-size: 36px;
+        text-align: center; /* Center-align the heading for better appearance */
+        font-size: 36px; /* Increased font size for heading */
     }
 
-    p {
-        text-align: center;
-    }
+     p {
+    text-align: center; /* Center-align the paragraph */
+    font-weight: bold; /* Make the font bold */
+}
+
 
     .input-container {
-        margin-bottom: 20px;
-        padding: 10px;
+        margin-bottom: 20px; /* Increased spacing for better separation */
+        padding: 10px; /* Increased padding for better aesthetics */
         background-color: #f9f9f9;
         border: 1px solid #ddd;
         border-radius: 4px;
@@ -66,21 +68,21 @@
 
     .name-inputs {
         display: flex;
-        justify-content: space-between;
-        align-items: stretch;
+        justify-content: space-between; /* Distribute space between inputs */
+        align-items: stretch; /* Align inputs to stretch equally */
     }
 
     .name-inputs input {
-        flex: 1;
-        margin-right: 10px;
-        padding: 10px;
+        flex: 1; /* Allow the inputs to grow equally */
+        margin-right: 10px; /* Add some space between the inputs */
+        padding: 10px; /* Added padding for better aesthetics */
         border: 1px solid #ccc;
         border-radius: 4px;
-        font-size: 16px;
+        font-size: 16px; /* Larger font size for better readability */
     }
 
     .name-inputs input:last-child {
-        margin-right: 0;
+        margin-right: 0; /* Remove margin from the last input */
     }
 
     .input-container input,
@@ -89,41 +91,41 @@
         padding: 10px;
         border: 1px solid #ccc;
         border-radius: 4px;
-        font-size: 16px;
+        font-size: 16px; /* Larger font size for better readability */
     }
 
     .input-container textarea {
-        resize: vertical;
+        resize: vertical; /* Allow the textarea to be resized vertically only */
     }
 
     .input-container button {
         width: 100%;
-        padding: 10px;
-        background-color: #007bff;
+        padding: 10px; /* Increased padding for the button */
+        background-color: #4D7C0F;
         border: none;
         color: white;
         cursor: pointer;
         border-radius: 4px;
-        font-weight: bold;
-        font-size: 16px;
+        font-weight: bold; /* Make the button text bold */
+        font-size: 16px; /* Match font size with input fields */
     }
 
     .input-container button:hover {
-        background-color: #0056b3;
+        background-color: #65A30D; /* Darker shade on hover */
     }
 
     @media (max-width: 600px) {
         .name-inputs {
-            flex-direction: column;
+            flex-direction: column; /* Stack the name inputs on small screens */
         }
 
         .name-inputs input {
-            margin-right: 0;
-            margin-bottom: 10px;
+            margin-right: 0; /* Remove right margin for stacked inputs */
+            margin-bottom: 10px; /* Add some space between stacked inputs */
         }
 
         .name-inputs input:last-child {
-            margin-bottom: 0;
+            margin-bottom: 0; /* Remove bottom margin for the last input */
         }
     }
 </style>
