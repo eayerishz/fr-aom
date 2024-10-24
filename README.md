@@ -33,7 +33,7 @@ This app supports both individual users and businesses, providing reviews and co
 - **Contact Seller**: A messaging system for admin and users to communicate.
 - **Inbox**: Where the user and admin can view their previous transactions.
 - **Ratings & Reviews**: Rate and review both products and sellers after they communicate.
-- **Contact Us**: Users can message the admin through Gmail. Here are the details (Email: `angelite.online.marketplace@gmail.com`, Password: `password`).
+- **Contact Us**: Users can message the admin through Gmail. Here are the details (Email: `angelite.online.marketplace@gmail.com`, Password: `aom12345`).
 - **Logout**: Log out of the admin's account.
 
 ## Installation
