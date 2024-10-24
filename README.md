@@ -39,7 +39,7 @@ This app supports both individual users and businesses, providing reviews and co
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/aom.git
+   https://github.com/eayerishz/fr-aom.git 
 
 2. cd aom
 3. pip install -r requirements.txt
